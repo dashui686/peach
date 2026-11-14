@@ -18,6 +18,7 @@ Entries are written for users to scan: one sentence each, saying where something
 
 - **Updates**: When an update is available, Check for updates lists each newer release's notes from GitHub in the interface language (#680). / **更新**：检查到新版本时，「检查更新」里按界面语言列出之后每一版在 GitHub 上的更新说明（#680）。
 - **Sourcing**: Wants checks for sources on a schedule; cards with no result show the check date, and found links are listed on the card (#650). / **采集**：「想要」清单定时给待找作品查资源，没查到的卡片注明日期，查到的链接直接列在卡片上（#650）。
+- **Settings**: You can now set the Wants recheck interval and give-up count, database backups kept, log retention and a playback transcoding quality limit (#661). / **配置**：「想要」老片的再查间隔与放弃次数、账本备份份数、日志保留天数和播放转码的画质上限都能在 Peach 配置里调了（#661）。
 
 ### Changed / 变更
 
