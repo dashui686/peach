@@ -2,7 +2,7 @@
 (function() {
 	try {
 		var e = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {}, t = new e.Error().stack;
-		t && (e._sentryDebugIds = e._sentryDebugIds || {}, e._sentryDebugIds[t] = "49f5db2f-dc2d-4dc6-87c9-dc200c68ee63", e._sentryDebugIdIdentifier = "sentry-dbid-49f5db2f-dc2d-4dc6-87c9-dc200c68ee63");
+		t && (e._sentryDebugIds = e._sentryDebugIds || {}, e._sentryDebugIds[t] = "67ccf901-1f86-4f41-a27e-9745ce7d758d", e._sentryDebugIdIdentifier = "sentry-dbid-67ccf901-1f86-4f41-a27e-9745ce7d758d");
 	} catch {}
 })();
 var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescriptor, r = Object.getOwnPropertyNames, i = Object.getPrototypeOf, a = Object.prototype.hasOwnProperty, o = (e, t) => () => (t || (e((t = { exports: {} }).exports, t, t.exports), e = null), t.exports), s = (e, i, o, s) => {
@@ -5856,7 +5856,7 @@ var He = {
 		count_one: "{{count, number}} backup available",
 		count_other: "{{count, number}} backups available",
 		empty: "No backups yet",
-		help: "The database stores all metadata, watch history, and review decisions. Manual and automatic pre-write backups are kept: the 5 most recent plus any from the last 24 hours.",
+		help: "The database stores all metadata, watch history, and review decisions. Set how many backups to keep under Retention below.",
 		jobIncomplete: "The task didn't finish.",
 		loading: "Loading backups",
 		manual: "Manual",
@@ -12739,7 +12739,7 @@ var He = {
 		backupProgress: "备份进度",
 		count: "共 {{count, number}} 份可恢复的备份",
 		empty: "还没有备份",
-		help: "账本保存全部资料、观看记录与复核结论。手动和写入前的自动备份保留最近 5 份及 24 小时内的。",
+		help: "账本保存全部资料、观看记录与复核结论；自动备份留几份见下方「保留期限」。",
 		jobIncomplete: "任务没有完成",
 		loading: "正在读取备份列表",
 		manual: "手动",
@@ -38749,4 +38749,4 @@ Dt();
 var Bb = document.getElementById("peach-page"), Vb = Bb ? zb[Bb.dataset.page ?? ""] : void 0;
 Bb && Vb && (0, It.createRoot)(Bb).render(/* @__PURE__ */ (0, V.jsx)(Rb, { children: /* @__PURE__ */ (0, V.jsx)(Vb, { data: { ...Bb.dataset } }) }));
 
-//# debugId=49f5db2f-dc2d-4dc6-87c9-dc200c68ee63
+//# debugId=67ccf901-1f86-4f41-a27e-9745ce7d758d
