@@ -1,4 +1,14 @@
 {
+  "mediaActions": {
+    "label": "Work actions",
+    "open": "Open details",
+    "select": "Select work",
+    "deselect": "Deselect work",
+    "removeLater": "Remove from watch later",
+    "delete": "Delete",
+    "restore": "Restore work",
+    "failed": "Work action failed"
+  },
   "avatarPicker": {
     "backToChoices": "Back to options",
     "baseImage": "Base image",

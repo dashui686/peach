@@ -2,7 +2,7 @@
 (function() {
 	try {
 		var e = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {}, t = new e.Error().stack;
-		t && (e._sentryDebugIds = e._sentryDebugIds || {}, e._sentryDebugIds[t] = "a92e76d4-ca60-4d5e-84a7-5ec3e7122165", e._sentryDebugIdIdentifier = "sentry-dbid-a92e76d4-ca60-4d5e-84a7-5ec3e7122165");
+		t && (e._sentryDebugIds = e._sentryDebugIds || {}, e._sentryDebugIds[t] = "c920d081-23e5-4c02-b737-9921e55af570", e._sentryDebugIdIdentifier = "sentry-dbid-c920d081-23e5-4c02-b737-9921e55af570");
 	} catch {}
 })();
 var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescriptor, r = Object.getOwnPropertyNames, i = Object.getPrototypeOf, a = Object.prototype.hasOwnProperty, o = (e, t) => () => (t || (e((t = { exports: {} }).exports, t, t.exports), e = null), t.exports), s = (e, i, o, s) => {
@@ -1463,6 +1463,16 @@ var ye = (e) => !b(e) && typeof e != "boolean" && typeof e != "number", be = cla
 Ve.createInstance, Ve.dir, Ve.init, Ve.loadResources, Ve.reloadResources, Ve.use, Ve.changeLanguage, Ve.getFixedT, Ve.t, Ve.exists, Ve.setDefaultNamespace, Ve.hasLoadedNamespace, Ve.loadNamespaces, Ve.loadLanguages;
 // src/settings-key.ts
 var He = "peach.settings.v1", Ue = {
+	mediaActions: {
+		label: "Work actions",
+		open: "Open details",
+		select: "Select work",
+		deselect: "Deselect work",
+		removeLater: "Remove from watch later",
+		delete: "Delete",
+		restore: "Restore work",
+		failed: "Work action failed"
+	},
 	avatarPicker: {
 		backToChoices: "Back to options",
 		baseImage: "Base image",
@@ -2881,6 +2891,7 @@ var He = "peach.settings.v1", Ue = {
 		columnEntry: "Peach entry",
 		columnName: "Link name",
 		columnResult: "Result",
+		copyLink: "Copy link",
 		columnUrl: "URL",
 		dead: "Dead link",
 		deleteDead: "Delete dead links",
@@ -3089,6 +3100,7 @@ var He = "peach.settings.v1", Ue = {
 		columnSize: "Recorded size",
 		confirm: "Delete videos permanently",
 		confirmTitle: "Delete all videos of the selected actresses",
+		deleteVideosForRow: "Delete all videos for this performer",
 		deleteSelected: "Delete selected actresses' videos",
 		description: "Select actresses to permanently delete all their videos, including those in the trash. Actress profiles and photos are kept.",
 		done: "The selected videos and related records were deleted. Actress profiles and photos are kept.",
@@ -3355,6 +3367,8 @@ var He = "peach.settings.v1", Ue = {
 		removeSelectedBody_one: "{{count, number}} alias will be removed, and its sources will become a separate creator again.",
 		removeSelectedBody_other: "These {{count, number}} aliases will be removed, and their sources will become separate creators again.",
 		removeSelectedConfirm: "Remove selected aliases",
+		removeRowAliases_one: "Remove alias in this group ({{count, number}})",
+		removeRowAliases_other: "Remove aliases in this group ({{count, number}})",
 		removeSelectedCount_one: "Remove selected aliases ({{count, number}})",
 		removeSelectedCount_other: "Remove selected aliases ({{count, number}})",
 		removeSelectedTitle: "Remove selected creator aliases",
@@ -4131,6 +4145,7 @@ var He = "peach.settings.v1", Ue = {
 	healthList: {
 		copied: "List copied",
 		copyList: "Copy list",
+		copyRow: "Copy this record",
 		copySelected: "Copy selected",
 		durationSeconds: "Duration (s)",
 		emptyBody: "No videos need attention.",
@@ -8446,6 +8461,7 @@ var He = "peach.settings.v1", Ue = {
 	dataTable: {
 		bulkActions: "{{label}} bulk actions",
 		clearSelection: "Clear selection",
+		contextActions: "Context actions",
 		empty: "No records",
 		recordUnit: "records",
 		selectAll: "Select all {{label}}",
@@ -9160,6 +9176,16 @@ var He = "peach.settings.v1", Ue = {
 		cannotUndo: " This can't be undone."
 	}
 }, Qe = {
+	mediaActions: {
+		label: "作品操作",
+		open: "打开详情",
+		select: "选择作品",
+		deselect: "取消选择",
+		removeLater: "移出稍后看",
+		delete: "删除",
+		restore: "还原作品",
+		failed: "作品操作未完成"
+	},
 	avatarPicker: {
 		backToChoices: "返回备选图片",
 		baseImage: "底图",
@@ -10470,6 +10496,7 @@ var He = "peach.settings.v1", Ue = {
 		columnEntry: "Peach 资料",
 		columnName: "链接名称",
 		columnResult: "结果",
+		copyLink: "复制链接",
 		columnUrl: "地址",
 		dead: "地址已失效",
 		deleteDead: "删除失效链接",
@@ -10641,6 +10668,7 @@ var He = "peach.settings.v1", Ue = {
 		columnSize: "登记大小",
 		confirm: "永久删除影片",
 		confirmTitle: "删除所选女优的全部影片",
+		deleteVideosForRow: "删除该女优的全部影片",
 		deleteSelected: "删除所选女优影片",
 		description: "勾选女优，永久删除她们的全部影片，包括回收站里的。女优档案和照片保留。",
 		done: "所选影片及关联记录已删除，女优档案和照片保留。",
@@ -10853,6 +10881,7 @@ var He = "peach.settings.v1", Ue = {
 		removePartialError: "{{error}}（已移除 {{removed}} 个别名，还有 {{count, number}} 个未移除）",
 		removeSelectedBody: "将移除以下 {{count, number}} 个别名，对应来源恢复为独立创作者组。",
 		removeSelectedConfirm: "移除所选别名",
+		removeRowAliases: "移除这组别名（{{count, number}}）",
 		removeSelectedCount: "移除所选别名（{{count, number}}）",
 		removeSelectedTitle: "移除所选创作者别名",
 		removeTitle: "移除创作者别名",
@@ -11553,6 +11582,7 @@ var He = "peach.settings.v1", Ue = {
 	healthList: {
 		copied: "已复制清单",
 		copyList: "复制当前清单",
+		copyRow: "复制这条记录",
 		copySelected: "复制所选",
 		durationSeconds: "时长（秒）",
 		emptyBody: "没有需要处理的作品。",
@@ -15712,6 +15742,7 @@ var He = "peach.settings.v1", Ue = {
 	dataTable: {
 		bulkActions: "{{label}}批量操作",
 		clearSelection: "取消选择",
+		contextActions: "快捷操作",
 		empty: "没有记录",
 		recordUnit: "条记录",
 		selectAll: "全选{{label}}",
@@ -39716,4 +39747,4 @@ jt();
 var Kb = document.getElementById("peach-page"), qb = Kb ? Gb[Kb.dataset.page ?? ""] : void 0;
 Kb && qb && (0, Bt.createRoot)(Kb).render(/* @__PURE__ */ (0, V.jsx)(Wb, { children: /* @__PURE__ */ (0, V.jsx)(qb, { data: { ...Kb.dataset } }) }));
 
-//# debugId=a92e76d4-ca60-4d5e-84a7-5ec3e7122165
+//# debugId=c920d081-23e5-4c02-b737-9921e55af570
