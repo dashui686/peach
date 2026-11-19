@@ -50,6 +50,11 @@ class MediaIoTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 browse(config, str(media / 'escape'))
 
+    def test_nas_browser_refuses_the_local_filesystem_root_as_a_media_root(self):
+        from peach.nas_directories import list_directory
+        with self.assertRaises(ValueError):
+            list_directory(self.root, [self.root.anchor], include_files=True)
+
     def test_nas_browser_bounds_listing_and_inherits_killable_io(self):
         from peach.nas_directories import browse, list_directory
         entries = [SimpleNamespace(name=str(index), is_dir=lambda **kwargs: True) for index in range(502)]

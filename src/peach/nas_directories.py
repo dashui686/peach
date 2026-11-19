@@ -79,14 +79,18 @@ def list_directory(path, allowed: list[str], offset: int = 0, include_files: boo
     candidate = Path(path)
     if not candidate.is_absolute():
         raise ValueError('the path must be absolute')
-    boundaries = [Path(root) for root in allowed if candidate.is_relative_to(Path(root))
-                  and Path(root) != Path(Path(root).anchor)]
+    boundaries = [Path(root) for root in allowed if candidate.is_relative_to(Path(root))]
     if not boundaries:
         raise ValueError('outside the configured media roots')
     # 只访问本次路径所属的根；离线网盘不阻塞另一个本地媒体根。
     boundary = max(boundaries, key=lambda root: len(root.parts)).resolve(strict=True)
+    # 已配置的网络盘盘符可以映射到整份 UNC 共享；系统盘根目录仍不能浏览。
+    drive = boundary.drive
+    unc_share = drive.startswith('\\\\') and not drive.startswith(('\\\\?\\', '\\\\.\\'))
+    if boundary == Path(boundary.anchor) and not unc_share:
+        raise ValueError('outside the configured media roots')
     target = candidate.resolve(strict=True)
-    if not target.is_relative_to(boundary) or boundary == Path(boundary.anchor):
+    if not target.is_relative_to(boundary):
         raise ValueError('outside the configured media roots')
     focus_name = _focus_spelling(target, focus_name)
     directories = []
