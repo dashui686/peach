@@ -63,7 +63,10 @@ def q_media_directory(contract, args):
         return {**result, 'state': 'unreachable'}
     except ValueError:
         raise UserValueError('errors.nasDirectories.outsideRoots') from None
-    result.update(directories=[{'name': item['name']} for item in page['directories']],
+    actual_focus = page.get('focus_name', focus_name)
+    if actual_focus != focus_name and focus_name in indexed:
+        indexed.setdefault(actual_focus, indexed[focus_name])
+    result.update(focus_name=actual_focus, directories=[{'name': item['name']} for item in page['directories']],
                   files=[{**item, 'asset_id': indexed.get(item['name'])} for item in page['files']],
                   next_offset=page['next_offset'], offset=page['offset'], read_only=page['read_only'])
     return result

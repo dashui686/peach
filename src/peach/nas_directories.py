@@ -59,6 +59,21 @@ def browse(config, initial: str, *, start: bool = False, offset: int = 0) -> dic
         raise NasDirectoryError('errors.nasDirectories.outsideRoots') from exc
 
 
+def _focus_spelling(directory: Path, name: str) -> str:
+    """Windows 按实际目录项的拼写定位，保留大小写敏感目录的精确匹配。"""
+    if os.name != 'nt' or not name or name in {'.', '..'} or Path(name).name != name:
+        return name
+    requested = directory / name
+    try:
+        if not requested.is_symlink():
+            actual = requested.resolve(strict=True)
+            if actual.parent == directory and actual.name.casefold() == name.casefold():
+                return actual.name
+    except OSError:
+        pass
+    return name
+
+
 def list_directory(path, allowed: list[str], offset: int = 0, include_files: bool = False, focus_name: str = '') -> dict:
     """由可终止的媒体读取子进程调用；不跟随列表中的符号链接。"""
     candidate = Path(path)
@@ -73,6 +88,7 @@ def list_directory(path, allowed: list[str], offset: int = 0, include_files: boo
     target = candidate.resolve(strict=True)
     if not target.is_relative_to(boundary) or boundary == Path(boundary.anchor):
         raise ValueError('outside the configured media roots')
+    focus_name = _focus_spelling(target, focus_name)
     directories = []
     files = []
     with os.scandir(target) as entries:
@@ -106,6 +122,6 @@ def list_directory(path, allowed: list[str], offset: int = 0, include_files: boo
             'parent': str(target.parent) if target != boundary else None,
             'roots': allowed, 'directories': sorted(directories, key=lambda item: item['name'].casefold()),
             'next_offset': offset + 500 if len(limited) > 500 else None,
-            **({'files': sorted(files, key=lambda item: item['name'].casefold()),
+            **({'files': sorted(files, key=lambda item: item['name'].casefold()), 'focus_name': focus_name,
                 'offset': offset,
                 'read_only': bool(os.statvfs(target).f_flag & os.ST_RDONLY) if hasattr(os, 'statvfs') else None} if include_files else {})}

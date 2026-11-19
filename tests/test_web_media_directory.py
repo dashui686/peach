@@ -1,5 +1,6 @@
 """网页文件浏览的授权根、只读边界、文件定位和离线状态。"""
 import json
+import os
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -74,6 +75,15 @@ class MediaDirectoryTests(unittest.TestCase):
         self.assertEqual((result['root'], result['relative'], result['focus_name']), ('local', 'series', 'movie.mp4'))
         self.assertEqual(self.reader.call_args.args[1], str(self.folder))
         self.assertEqual(json.loads(self.reader.call_args.kwargs['value'])['allowed'], [str(self.media)])
+
+    def test_windows_location_reports_the_file_spelling_and_keeps_the_asset_id(self):
+        if os.name != 'nt' or not (self.folder / 'MOVIE.MP4').is_file():
+            self.skipTest('需要大小写不敏感的 Windows 测试目录')
+        with self.contract.write_transaction() as conn:
+            conn.execute('UPDATE asset SET path=? WHERE id=1', ('R:\\Media\\series\\MOVIE.MP4',))
+        result = self.read(asset='1')
+        self.assertEqual(result['focus_name'], 'movie.mp4')
+        self.assertIn({'name': 'movie.mp4', 'asset_id': 1}, result['files'])
 
     def test_unmounted_asset_keeps_its_recorded_position_without_io(self):
         result = self.read(asset='5')
