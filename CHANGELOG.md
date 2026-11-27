@@ -20,6 +20,7 @@ Entries are written for users to scan: one sentence each, saying where something
 - **Playback**: Repair missing MP4 timestamp tables when only a few frames cannot be decoded (#176). / **播放**：MP4 只有极少数帧无法解码时仍可修复缺失的时间戳表（#176）。
 ### Fixed / 修复
 
+- **Sourcing**: Use consistent JAV tags across languages and separate bridal roles, wedding dresses, and studio affiliations. / **采集**：统一 JAV 日英来源的同类标签，区分新娘角色、婚纱服装和厂牌归属。
 - **Desktop**: Open Peach from the Windows tray in your default browser (#896). / **桌面**：点击 Windows 托盘时，在系统默认浏览器中打开 Peach（#896）。
 
 - **Settings**: Configure AI on the Peach host without an access password. The AI settings page stays visible and read-only when access is restricted (#393). / **配置**：Peach 主机无需访问密码即可配置 AI，受限时仍可浏览只读的 AI 接入页面（#393）。
